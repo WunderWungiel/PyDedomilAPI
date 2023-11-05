@@ -36,6 +36,7 @@ def retrieve_games(link):
     for div in div_matches:
         game_a_match = div.find('a', {'class': 'bluelink'})
         game_title = game_a_match.text
+        game_title = game_title.replace("[39]", '\'')
         game_link = game_a_match.get('href')
         game_link = "http://dedomil.net" + game_link
         #game_span_match = div.find('span', {'class': 'DATE'})

@@ -96,6 +96,8 @@ class GetAppInfo:
             title = title_div.text
             if not title:
                 title = None
+            else:
+                title = title.replace("[39]", '\'')
 
         infos = self.soup.find_all('div', {'class': 'OPIS'})
         
@@ -123,6 +125,7 @@ class GetAppInfo:
                 else:
                     vendor = vendor.group(1)
                     vendor = vendor.strip()
+                    vendor = vendor.replace("[39]", '\'')
 
         description_div = infos[-1].find_next_sibling('div')
         if description_div:
@@ -130,6 +133,7 @@ class GetAppInfo:
             if description:
                 description = '\n'.join(description.strip().splitlines())
                 description = re.sub(r'^Description: ', '', description)
+                description = description.replace("[39]", '\'')
             else:
                 description = None
         else:
